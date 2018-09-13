@@ -12,10 +12,15 @@ class Admin::EventsController < ApplicationController
   
   def create
     @event = Event.new(event_params)
-    @event.save
-    flash[:notice] = "event was successfully created."
-    redirect_to admin_event_path(@event)
-    # redirect_to admin_event_path(@event), notice: "event was successfully created."
+
+    if @event.save
+      flash[:notice] = "event was successfully created."
+      redirect_to admin_event_path(@event)
+      # redirect_to admin_event_path(@event), notice: "event was successfully created."
+    else
+      flash.now['alert'] = 'Event could not be created'
+      render :new
+    end
   end
 
   def show
@@ -25,8 +30,12 @@ class Admin::EventsController < ApplicationController
   end
   
   def update
-    @event.update(event_params)
-    redirect_to admin_event_path(@event), notice: 'Event was successfully updated.'
+    if @event.update(event_params)
+      redirect_to admin_event_path(@event), notice: 'Event was successfully updated.'
+    else
+      flash.now['alert'] = 'Event could not be updated'
+      render :edit
+    end
   end
   
   def destroy
