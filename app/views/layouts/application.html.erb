@@ -21,7 +21,19 @@
             <% end %>
           </div>
           <div id="header-links" class="eight columns">
+            <div class="header-link">
+              <%= link_to root_path do %>
+                <i class="fas fa-home fa-2x header-link-icon"></i>
+                <span class="header-link-text">Home</span>
+              <% end %>
+            </div>
             <% if user_signed_in? %>
+              <div class="header-link">
+                <%= link_to purchases_path do %>
+                  <i class="fas fa-history fa-2x header-link-icon"></i>
+                  <span class="header-link-text">Purchases</span>
+                <% end %>
+              </div>
               <div class="header-link">
                 <%= link_to edit_user_registration_path do %>
                   <i class="fas fa-user fa-2x header-link-icon"></i>
