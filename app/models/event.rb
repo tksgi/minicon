@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :event_category
+  has_many :purchases
 
   validates :event_category, :location, :start_at, :ticket_price, :ticket_quantity, presence: true
   validates :title, presence: true, length: { maximum: 80}, uniqueness: true
