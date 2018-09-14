@@ -21,4 +21,7 @@
 /node_modules
 /yarn-error.log
 
+# Ignore Uploaded Image file
+/public/uploads/*
+
 .byebug_history

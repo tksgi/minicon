@@ -3,7 +3,7 @@
   
   <div class="field">
     <%= form.label :event_category_id %>
-    <%= form.text_field :event_category_id, id: :event_category_id %>
+    <%= form.select :event_category_id, choices %>
   </div>
   
   <div class="field">
@@ -30,9 +30,37 @@
     <%= form.label :ticket_quantity %>
     <%= form.text_field :ticket_quantity, id: :ticket_quantity %>
   </div>
+
+  <div class="field">
+    <%= form.label :image,"ユーザー画像" %>
+    <%= form.file_field :image, id: "post_image" %>
+  </div>
+  <div id="preview">
+    <%= image_tag event.image.to_s if event.image %>
+  </div><br>
   
   <div class="actions">
     <%= form.submit %>
   </div>
   
 <% end %>
+
+
+<script>
+function Filepreview(evt){
+ var file = evt.target.files[0];
+
+document.getElementById('preview').innerHTML =""
+
+ var reader = new FileReader();
+ reader.onload = (function(){
+   return function(e) {
+     var span = document.createElement('span');
+     span.innerHTML= "<img src='" +e.target.result + "'>";
+     document.getElementById('preview').insertBefore(span,null);
+   };
+ })(file);
+  reader.readAsDataURL(file);
+ }
+document.getElementById('post_image').addEventListener('change',Filepreview,false);
+</script>

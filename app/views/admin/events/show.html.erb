@@ -28,5 +28,8 @@
   <%= @event.ticket_quantity %>
 </p>
 
+<strong>Event Image</strong><br>
+<%= image_tag @event.image.to_s %>
+
 <%= link_to 'Edit', edit_admin_event_path(@event) %>
 <%= link_to 'Back', admin_events_path %>

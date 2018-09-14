@@ -1,6 +1,7 @@
 class Admin::EventsController < ApplicationController
   layout 'admin'
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_choices, only: [:edit, :new]
   
   def index
     @events = Event.all
@@ -47,8 +48,13 @@ class Admin::EventsController < ApplicationController
     def set_event
       @event = Event.find(params[:id])
     end
+
+    def set_choices
+      @choices = EventCategory.pluck("name", "id")
+    end
     
     def event_params
-      params.require(:event).permit(:event_category_id, :title, :location, :start_at, :ticket_price, :ticket_quantity)
+      params.require(:event).permit(:event_category_id, :title, :location, :start_at,
+                                    :ticket_price, :ticket_quantity, :image)
     end
 end

@@ -2,7 +2,9 @@ class Event < ApplicationRecord
   belongs_to :event_category
   has_many :purchases
 
-  validates :event_category, :location, :start_at, :ticket_price, :ticket_quantity, presence: true
+  mount_uploader :image, ImageUploader
+
+  validates :event_category, :location, :start_at, :ticket_price, :ticket_quantity, :image, presence: true
   validates :title, presence: true, length: { maximum: 80}, uniqueness: true
   validates :location, length: { maximum: 20 }
   validates :ticket_price, :ticket_quantity,
