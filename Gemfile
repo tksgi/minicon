@@ -33,7 +33,15 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'devise'
+gem 'devise' # ログイン機能
+gem 'kaminari' # ページネーション
+
+# 画像アップロード用
+gem 'carrierwave'
+gem 'rmagick'
+
+# テスト用
+gem 'pry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

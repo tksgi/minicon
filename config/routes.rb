@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # root 'controller_name#action_name'
   root 'events#index'
   
-  resources :events, only: [:index] do
+  resources :events, only: [:index, :show] do
     resources :purchases, only: [:new, :create]
   end
   #/events/1/purchases/new
